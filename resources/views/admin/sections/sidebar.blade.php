@@ -20,12 +20,16 @@
             </li>
             <li> <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block"><i class="zmdi zmdi-assignment"></i><span>Projects</span></a>
                 <ul class="ml-menu">
-                    <li class="{{ Request::is('admin/project*') ? 'active' : '' }}">
-                        <a href="{{ route('admin.portfolio.index') }}">Portfolios</a>
-                    </li>
                     <li class="{{ Request::is('admin/category*') ? 'active' : '' }}">
                         <a href="{{ route('admin.category.index') }}">Category</a>
                     </li>
+                    <li class="{{ Request::is('admin/project*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.portfolio.index') }}">Portfolios</a>
+                    </li>
+                    <li class="{{ Request::is('admin/portfolio-pic*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.portfolio-pic.index') }}">Portfolio Pictures</a>
+                    </li>
+
                 </ul>
             </li>
             <li class="{{ Request::is('admin/header*') ? 'active' : '' }}">

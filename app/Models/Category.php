@@ -17,4 +17,20 @@ class Category extends Model
     {
         return $this->hasMany(Portfolio::class);
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($category) {
+            foreach($category->portfolios as $portfolio) {
+                foreach($portfolio->portfolioPics  as $pic) {
+                    unlink(public_path('assets/img/portfolio/' . $pic->image));
+                }
+            }
+            foreach($category->portfolios as $portfolio) {
+                unlink(public_path('assets/img/portfolio/' . $portfolio->image));
+            }
+        });
+    }
 }

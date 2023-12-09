@@ -51,7 +51,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::resource('message', \App\Http\Controllers\MessageController::class);
     Route::resource('link', \App\Http\Controllers\LinkController::class);
     Route::resource('portfolio', \App\Http\Controllers\PortfolioController::class);
-    Route::resource('category', \App\Http\Controllers\CategoryController::class);    
+    Route::resource('category', \App\Http\Controllers\CategoryController::class);
+    Route::resource('portfolio-pic', \App\Http\Controllers\PortfolioPicController::class);
 });
 
 require __DIR__ . '/auth.php';

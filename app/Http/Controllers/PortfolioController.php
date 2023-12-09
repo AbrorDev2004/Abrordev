@@ -99,9 +99,6 @@ class PortfolioController extends Controller
     public function destroy(string $id)
     {
         $portfolio = Portfolio::findOrFail($id);
-        if ($portfolio->image) {
-            unlink(public_path('assets/img/portfolio/' . $portfolio->image));
-        }
         $portfolio->delete();
         return redirect()
             ->route('admin.portfolio.index')
