@@ -69,6 +69,7 @@
                                     <div>
                                         <h2 class="card-inside-title">Qaysi aboutga tegish ekanligini tanlang</h2>
                                         <select class="form-control show-tick" name="about_id" required>
+                                            <option value="">- About tanlang -</option>
                                             @foreach ($abouts as $about)
                                                 <option value="{{ $about->id }}" @if ($link->about_id == $about->id) selected @endif>{{ $about->name }}</option>
                                             @endforeach

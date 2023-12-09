@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Portfolio')
+@section('title', 'Categories')
 @section('css')
     <!-- JQuery DataTable Css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css') }}">
@@ -11,9 +11,9 @@
             <div class="block-header">
                 <div class="row">
                     <div class="col-lg-7 col-md-6 col-sm-12">
-                        <h2>Portfolio Page</h2>
+                        <h2>Categories Page</h2>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item active"><i class="zmdi zmdi-home"></i> Portfolio/</li>
+                            <li class="breadcrumb-item active"><i class="zmdi zmdi-home"></i> Category/</li>
                         </ul>
                         <button class="btn btn-primary btn-icon mobile_menu" type="button">
                             <i class="zmdi zmdi-sort-amount-desc"></i>
@@ -35,7 +35,7 @@
                                 <h2><strong>Bazadagi </strong> Malumotlar </h2>
                                 <ul class="header-dropdown">
                                     <li>
-                                        <a href="{{ route('admin.portfolio.create') }}" class="btn btn-primary">Create</a>
+                                        <a href="{{ route('admin.category.create') }}" class="btn btn-primary">Create</a>
                                     </li>
                                     <li class="remove">
                                         <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
@@ -47,34 +47,22 @@
                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable table-custom">
                                         <thead>
                                             <tr>
-                                                <th width="30%">Image</th>
-                                                <th width="12%">Column</th>
-                                                <th>Malumotlari</th>
+                                                <th width="8%">ID</th>
+                                                <th>Name</th>
+                                                <th>Create at</th>
+                                                <th width="30%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($portfolios as $portfolio)
+                                            @foreach ($categories as $category)
                                                 <tr>
-                                                    <td rowspan="4">
-                                                        <img src="{{ asset('assets/img/portfolio/' . $portfolio->image) }}" alt="" width="100%">
-                                                    </td>
-                                                    <td>Name</td>
-                                                    <td>{{ $portfolio->name }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>url</td>
-                                                    <td><a href="https://{{ $portfolio->url }}">{{ $portfolio->url }}</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Category</td>
-                                                    <td>{{ $portfolio->category->name }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Action</td>
+                                                    <td>{{ $category->id }}</td>
+                                                    <td>{{ $category->name }}</td>
+                                                    <td>{{ $category->created_at }}</td>
                                                     <td>
-                                                        <a href="{{ route('admin.portfolio.show', $portfolio->id) }}" class="btn btn-info btn-sm"><i class="zmdi zmdi-eye"></i> View</a>
-                                                        <a href="{{ route('admin.portfolio.edit', $portfolio->id) }}" class="btn btn-primary btn-sm"><i class="zmdi zmdi-edit"></i> Edit</a>
-                                                        <form action="{{ route('admin.portfolio.destroy', $portfolio->id) }}" method="POST" class="d-inline">
+                                                        <a href="{{ route('admin.category.show', $category->id) }}" class="btn btn-info btn-sm"><i class="zmdi zmdi-eye"></i> View</a>
+                                                        <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary btn-sm"><i class="zmdi zmdi-edit"></i> Edit</a>
+                                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST" class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="zmdi zmdi-delete"></i> Delete</button>

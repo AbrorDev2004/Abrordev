@@ -1,6 +1,8 @@
 @extends('layouts.admin')
-@section('title', 'link create')
+@section('title', 'Portfolio')
 @section('css')
+    <!-- Dropify Js -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/dropify/css/dropify.min.css') }}">
     <!-- Bootstrap Select Css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/plugins/bootstrap-select/css/bootstrap-select.css') }}" />
 @endsection
@@ -10,9 +12,9 @@
             <div class="block-header">
                 <div class="row">
                     <div class="col-lg-7 col-md-6 col-sm-12">
-                        <h2>Create Link Page</h2>
+                        <h2>Create Portfolios Page</h2>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.link.index') }}"><i class="zmdi zmdi-home"></i> Social links</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.portfolio.index') }}"><i class="zmdi zmdi-home"></i> Portfolio</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ul>
                     </div>
@@ -42,17 +44,46 @@
                                 </ul>
                             </div>
                             <div class="body">
-                                <form action="{{ route('admin.link.store') }}" method="POST">
+                                <form action="{{ route('admin.portfolio.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('POST')
                                     <div class="form-group">
                                         <h2 class="card-inside-title">Name</h2>
-                                        <input type="text" class="form-control" placeholder="Nomini yozing" name="name" required>
+                                        <input type="text" class="form-control" placeholder="Project nomini yozing" name="name" required>
                                     </div>
                                     <div class="form-group">
-                                        <h2 class="card-inside-title">Icon</h2>
-                                        Ushbu <a href="https://icons.getbootstrap.com/" target="_blank">link</a> orqali icon kodlarini topishingiz mumkin
-                                        <input type="text" class="form-control" placeholder="icon nomini yozing" name="icon" required>
+                                        <h2 class="card-inside-title">title</h2>
+                                        <input type="text" class="form-control" placeholder="Project sarlavhasini yozing" name="title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <h2 class="card-inside-title">Image</h2>
+                                        <input type="file" class="dropify" data-allowed-file-extensions="png jpg jpeg" name="image" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <h2 class="card-inside-title">Category</h2>
+                                        <select class="form-control show-tick" name="category_id" required>
+                                            <option value="">- Category tanlang -</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <h2 class="card-inside-title">Client</h2>
+                                        <input type="text" class="form-control" placeholder="Project kim uchun qilingan(Company or name)" name="client" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <h2 class="card-inside-title">Url</h2>
+                                        <input type="text" class="form-control" placeholder="Project url yozing" name="url" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Project Sanasi</label>
+                                        <div class="input-group masked-input">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="zmdi zmdi-calendar"></i></span>
+                                            </div>
+                                            <input type="date" class="form-control date" name="project_date" required>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <h2 class="card-inside-title">Description</h2>
@@ -60,24 +91,16 @@
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <textarea rows="3" class="form-control no-resize" placeholder="link uchun joy" name="url" required></textarea>
+                                                        <textarea rows="4" class="form-control no-resize" placeholder="Project haqida qisqacha ma'lumot" name="description" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <h2 class="card-inside-title">Qaysi aboutga tegish ekanligini tanlang</h2>
-                                        <select class="form-control show-tick" name="about_id" required>
-                                            <option value="">- About tanlang -</option>
-                                            @foreach ($abouts as $about)
-                                                <option value="{{ $about->id }}">{{ $about->name }}</option>
-                                            @endforeach
-                                        </select><br><br>
-                                    </div>
+
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-raised btn-primary btn-round waves-effect">Saqlash</button>
-                                        <a type="submit" class="btn btn-raised btn-primary btn-round waves-effect" href="{{ route('admin.link.index') }}">Bekor qilish</a>
+                                        <a type="submit" class="btn btn-raised btn-primary btn-round waves-effect" href="{{ route('admin.portfolio.index') }}">Bekor qilish</a>
                                     </div>
                                 </form>
                             </div>
@@ -87,4 +110,9 @@
             </div>
         </div>
     </section>
+@endsection
+@section('js')
+    <!-- Dropify Js -->
+    <script src="{{ asset('admin/assets/plugins/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/pages/forms/dropify.js') }}"></script>
 @endsection

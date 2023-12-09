@@ -1,18 +1,15 @@
 @extends('layouts.admin')
-@section('title', 'link create')
-@section('css')
-    <!-- Bootstrap Select Css -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/bootstrap-select/css/bootstrap-select.css') }}" />
-@endsection
+@section('title', 'Category create')
+
 @section('content')
     <section class="content">
         <div class="body_scroll">
             <div class="block-header">
                 <div class="row">
                     <div class="col-lg-7 col-md-6 col-sm-12">
-                        <h2>Create Link Page</h2>
+                        <h2>Create Category Page</h2>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.link.index') }}"><i class="zmdi zmdi-home"></i> Social links</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.category.index') }}"><i class="zmdi zmdi-home"></i>Skills</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ul>
                     </div>
@@ -42,42 +39,16 @@
                                 </ul>
                             </div>
                             <div class="body">
-                                <form action="{{ route('admin.link.store') }}" method="POST">
+                                <form action="{{ route('admin.category.store') }}" method="POST">
                                     @csrf
                                     @method('POST')
                                     <div class="form-group">
                                         <h2 class="card-inside-title">Name</h2>
-                                        <input type="text" class="form-control" placeholder="Nomini yozing" name="name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <h2 class="card-inside-title">Icon</h2>
-                                        Ushbu <a href="https://icons.getbootstrap.com/" target="_blank">link</a> orqali icon kodlarini topishingiz mumkin
-                                        <input type="text" class="form-control" placeholder="icon nomini yozing" name="icon" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <h2 class="card-inside-title">Description</h2>
-                                        <div class="row clearfix">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <textarea rows="3" class="form-control no-resize" placeholder="link uchun joy" name="url" required></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h2 class="card-inside-title">Qaysi aboutga tegish ekanligini tanlang</h2>
-                                        <select class="form-control show-tick" name="about_id" required>
-                                            <option value="">- About tanlang -</option>
-                                            @foreach ($abouts as $about)
-                                                <option value="{{ $about->id }}">{{ $about->name }}</option>
-                                            @endforeach
-                                        </select><br><br>
+                                        <input type="text" class="form-control" placeholder="category nomini yozing" name="name" required>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-raised btn-primary btn-round waves-effect">Saqlash</button>
-                                        <a type="submit" class="btn btn-raised btn-primary btn-round waves-effect" href="{{ route('admin.link.index') }}">Bekor qilish</a>
+                                        <a type="submit" class="btn btn-raised btn-primary btn-round waves-effect" href="{{ route('admin.category.index') }}">Bekor qilish</a>
                                     </div>
                                 </form>
                             </div>
