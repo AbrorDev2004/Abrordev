@@ -26,6 +26,7 @@ Route::get('/', function () {
         'services' => \App\Models\Service::all(),
         'portfolios' => \App\Models\Portfolio::all(),
         'categories' => \App\Models\Category::all(),
+        'social_links' => \App\Models\SocialLink::all(),
     ]);
 });
 
@@ -58,11 +59,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::resource('testimonial', \App\Http\Controllers\TestimonialController::class);
     Route::resource('resume', \App\Http\Controllers\ResumeController::class);
     Route::resource('service', \App\Http\Controllers\ServiceController::class);
-    Route::resource('message', \App\Http\Controllers\MessageController::class);
     Route::resource('link', \App\Http\Controllers\LinkController::class);
     Route::resource('category', \App\Http\Controllers\CategoryController::class);
     Route::resource('portfolio', \App\Http\Controllers\PortfolioController::class);
     Route::resource('portfolio-pic', \App\Http\Controllers\PortfolioPicController::class);
+
+    // message
+    // Route::get('message', [\App\Http\Controllers\MessageController::class, 'index'])->name('message.index');
+    // Route::get('message/{id}', [\App\Http\Controllers\MessageController::class, 'show'])->name('message.show');
+    // Route::delete('message/{id}', [\App\Http\Controllers\MessageController::class, 'destroy'])->name('message.destroy');
 });
+
+Route::post('/message', [\App\Http\Controllers\MessageController::class, 'store'])->name('message.store');
 
 require __DIR__ . '/auth.php';
