@@ -24,8 +24,18 @@ Route::get('/', function () {
         'testimonials' => \App\Models\Testimonial::all(),
         'resumes' => \App\Models\Resume::all(),
         'services' => \App\Models\Service::all(),
+        'portfolios' => \App\Models\Portfolio::all(),
+        'categories' => \App\Models\Category::all(),
     ]);
 });
+
+Route::get('/portfolio-details/{id}', function ($id) {
+    return view('portfolio-details',[
+        'header' => \App\Models\Header::first(),
+        'portfolio' => \App\Models\Portfolio::find($id)
+    ]);
+})->name('portfolio-details');
+
 
 Route::get('admin/dashboard', function () {
     return view('admin/dashboard');
@@ -50,8 +60,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::resource('service', \App\Http\Controllers\ServiceController::class);
     Route::resource('message', \App\Http\Controllers\MessageController::class);
     Route::resource('link', \App\Http\Controllers\LinkController::class);
-    Route::resource('portfolio', \App\Http\Controllers\PortfolioController::class);
     Route::resource('category', \App\Http\Controllers\CategoryController::class);
+    Route::resource('portfolio', \App\Http\Controllers\PortfolioController::class);
     Route::resource('portfolio-pic', \App\Http\Controllers\PortfolioPicController::class);
 });
 
