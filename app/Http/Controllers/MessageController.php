@@ -14,8 +14,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return view('admin.message.index',[
-            'messages' => ContactMessage::all()
+        return view('admin.message.index', [
+            'messages' => ContactMessage::all(),
         ]);
     }
 
@@ -31,18 +31,13 @@ class MessageController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        ContactMessage::findOrFail($id)->delete();
+        return redirect()
+            ->route('admin.message.index')
+            ->with('success', 'Message deleted successfully');
     }
 }

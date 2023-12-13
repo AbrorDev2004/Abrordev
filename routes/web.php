@@ -63,11 +63,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::resource('category', \App\Http\Controllers\CategoryController::class);
     Route::resource('portfolio', \App\Http\Controllers\PortfolioController::class);
     Route::resource('portfolio-pic', \App\Http\Controllers\PortfolioPicController::class);
-
-    // message
-    // Route::get('message', [\App\Http\Controllers\MessageController::class, 'index'])->name('message.index');
-    // Route::get('message/{id}', [\App\Http\Controllers\MessageController::class, 'show'])->name('message.show');
-    // Route::delete('message/{id}', [\App\Http\Controllers\MessageController::class, 'destroy'])->name('message.destroy');
+    Route::get('message', [\App\Http\Controllers\MessageController::class, 'index'])->name('message.index');
+    Route::delete('message/{id}', [\App\Http\Controllers\MessageController::class, 'destroy'])->name('message.destroy');
 });
 
 Route::post('/message', [\App\Http\Controllers\MessageController::class, 'store'])->name('message.store');
