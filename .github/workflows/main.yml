@@ -1,16 +1,16 @@
 on: push
 name: 🚀 Deploy website on push
 jobs:
-web-deploy:
-name: 🎉 Deploy
-runs-on: ubuntu-latest
-steps:
-- name: 🚚 Get latest code
-uses: actions/checkout@v3
-
-- name: 📂 Sync files
-uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-with:
-server: 142.132.192.157
-username: x_u_12502_abrorbek
-password: @Abror0611
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: 142.132.192.157
+        username: x_u_12502_abrorbek
+        password: @Abror0611
